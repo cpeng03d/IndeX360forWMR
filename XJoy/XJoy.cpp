@@ -8,7 +8,8 @@
 #include <tuple>
 #include <unordered_map>
 #include "Yaml.hpp"
-
+#include <openvr.h>
+#include "SteamIVRInput.h"
 
 #define u8 uint8_t
 #define u16 uint16_t
@@ -756,17 +757,17 @@ DWORD WINAPI right_joycon_thread(__in LPVOID lpParameter) {
   return 0;
 }
 
-void terminate() {
+void terminateapp() {
   kill_threads = true;
-  Sleep(10);
+  Sleep(10);/*
   TerminateThread(left_thread, 0);
-  TerminateThread(right_thread, 0);
+  TerminateThread(right_thread, 0);*/
   std::cout << "disconnecting and exiting..." << std::endl;
   disconnect_exit();
 }
 
 void exit_handler(int signum) {
-  terminate();
+	terminateapp();
   exit(signum);
 }
 
@@ -774,9 +775,10 @@ int main() {
   signal(SIGINT, exit_handler);
   std::cout << "XJoy v0.2.0" << std::endl << std::endl;
 
-  initialize_xbox();
-  hid_init();
-
+  //initialize_xbox();
+  //hid_init();
+  SteamIVRInput inputhandler;
+  inputhandler.Init(true);
   std::cout << std::endl;
   std::cout << "initializing threads..." << std::endl;
   report_mutex = CreateMutex(NULL, FALSE, NULL);
@@ -785,11 +787,12 @@ int main() {
     return 1;
   }
   std::cout << " => created report mutex" << std::endl;
+  /*
   left_thread = CreateThread(0, 0, left_joycon_thread, 0, 0, &left_thread_id);
-  right_thread = CreateThread(0, 0, right_joycon_thread, 0, 0, &right_thread_id);
+  right_thread = CreateThread(0, 0, right_joycon_thread, 0, 0, &right_thread_id);*/
   Sleep(500);
   std::cout << std::endl;
   getchar();
-  terminate();
+  terminateapp();
 }
 

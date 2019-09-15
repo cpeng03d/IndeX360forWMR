@@ -29,6 +29,9 @@
     <ClInclude Include="Yaml.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SteamIVRInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -40,11 +43,25 @@
     <ClCompile Include="Yaml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SteamIVRInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="XJoy.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="XJoy.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="action_manifest.json">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="manifest.vrmanifest">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="actionsbindingknuckles.json">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
