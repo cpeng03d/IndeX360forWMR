@@ -6,126 +6,134 @@
       }
    ],
    //"binding_url": "legacy_actions.json"
-   "actions" : [
-      {
-         "name" : "/actions/main/in/ButtonA",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/ButtonB",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/ButtonX",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/ButtonY",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/LeftDPADUp",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/LeftDPADLeft",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/LeftDPADDown",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/LeftDPADRight",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/out/RumbleLeft",
-         "requirement" : "mandatory",
-         "type" : "vibration"
-      },
-      {
-         "name" : "/actions/main/out/RumbleRight",
-         "requirement" : "mandatory",
-         "type" : "vibration"
-      },
-      {
-         "name" : "/actions/main/in/LeftGrip",
-         "requirement" : "mandatory",
-         "type" : "vector1"
-      },
-      {
-         "name" : "/actions/main/in/RightGrip",
-         "requirement" : "mandatory",
-         "type" : "vector1"
-      },
-      {
-         "name" : "/actions/main/in/LeftTriggerValue",
-         "requirement" : "mandatory",
-         "type" : "vector1"
-      },
-      {
-         "name" : "/actions/main/in/RightTriggerValue",
-         "requirement" : "mandatory",
-         "type" : "vector1"
-      },
-      {
-         "name" : "/actions/main/in/LeftTriggerClick",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/RightTriggerClick",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/LeftBumper",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/RightBumper",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/LeftStickClick",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/RightStickClick",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/Select",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      },
-      {
-         "name" : "/actions/main/in/Start",
-         "requirement" : "mandatory",
-         "type" : "boolean"
-      }
-   ],
+  "actions": [
+    {
+      "name": "/actions/main/in/ButtonA",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/ButtonB",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/ButtonX",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/ButtonY",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/LeftDPADUp",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/LeftDPADLeft",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/LeftDPADDown",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/LeftDPADRight",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/out/RumbleLeft",
+      "requirement": "mandatory",
+      "type": "vibration"
+    },
+    {
+      "name": "/actions/main/out/RumbleRight",
+      "requirement": "mandatory",
+      "type": "vibration"
+    },
+    {
+      "name": "/actions/main/in/LeftGrip",
+      "requirement": "optional",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/main/in/RightGrip",
+      "requirement": "optional",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/main/in/LeftTriggerValue",
+      "requirement": "mandatory",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/main/in/RightTriggerValue",
+      "requirement": "mandatory",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/main/in/LeftTriggerClick",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/RightTriggerClick",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/LeftBumper",
+      "requirement": "optional",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/RightBumper",
+      "requirement": "optional",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/LeftStickClick",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/RightStickClick",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/Select",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/Start",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/LeftStickPosition",
+      "requirement": "mandatory",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/main/in/RightStickPosition",
+      "requirement": "mandatory",
+      "type": "vector2"
+    }
+
+  ],
    "default_bindings" : [
       {
-         "controller_type" : "knuckles"
-      },
-    {
-      "binding_url": "actionsbindingknuckles.json",
-      "controller_type": "knuckles"
-    }
+        "binding_url": "actionsbindingknuckles.json",
+        "controller_type": "knuckles"
+      }
    ],
    "localization" : []
 }
