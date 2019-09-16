@@ -28,6 +28,7 @@ u8 data[DATA_BUFFER_SIZE];
 u16 stick_cal[14];
 u8 global_counter[2] = { 0,0 };
 
+SteamIVRInput inputhandler;
 PVIGEM_CLIENT client = vigem_alloc();
 hid_device *left_joycon = NULL;
 hid_device *right_joycon = NULL;
@@ -772,13 +773,18 @@ void exit_handler(int signum) {
   exit(signum);
 }
 
+void rumbleNotification(PVIGEM_CLIENT Client, PVIGEM_TARGET Target, UCHAR LargeMotor, UCHAR SmallMotor, UCHAR LedNumber)
+{
+	//inputhandler.rumbleController();
+}
+
 int main() {
   signal(SIGINT, exit_handler);
   std::cout << "XJoy v0.2.0" << std::endl << std::endl;
 
   initialize_xbox();
+  vigem_target_x360_register_notification(client, target, rumbleNotification);
   //hid_init();
-  SteamIVRInput inputhandler;
   inputhandler.Init(true);
   std::cout << std::endl;
   std::cout << "initializing threads..." << std::endl;
