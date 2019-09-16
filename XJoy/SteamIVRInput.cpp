@@ -172,6 +172,10 @@ void SteamIVRInput::handleDigitalAction(vr::InputDigitalActionData_t& state, con
 		{
 			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_START;
 		}
+		else if (key == k_actionguide)
+		{
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_GUIDE;
+		}
 	}
 }
 
