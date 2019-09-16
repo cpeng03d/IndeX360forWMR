@@ -26,6 +26,7 @@ constexpr auto k_actionleftStickClick = "/actions/main/in/LeftStickClick";
 constexpr auto k_actionrightStickClick = "/actions/main/in/RightStickClick";
 constexpr auto k_actionselect = "/actions/main/in/Select";
 constexpr auto k_actionstart = "/actions/main/in/Start";
+constexpr auto k_actionguide = "/actions/main/in/Guide";
 constexpr auto k_actionleftStickPosition = "/actions/main/in/LeftStickPosition";
 constexpr auto k_actionrightStickPosition = "/actions/main/in/RightStickPosition";
 
@@ -105,6 +106,7 @@ private:
 		{k_actionrightStickClick, {{},VRInputType::VRInputType_Digital}},
 		{k_actionselect, {{},VRInputType::VRInputType_Digital}},
 		{k_actionstart, {{},VRInputType::VRInputType_Digital}},
+		{k_actionguide, {{},VRInputType::VRInputType_Digital}},
 		{k_actionleftStickPosition, {{},VRInputType::VRInputType_Analog}},
 		{k_actionrightStickPosition, {{},VRInputType::VRInputType_Analog}},
 	};
