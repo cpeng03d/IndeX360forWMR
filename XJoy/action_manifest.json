@@ -118,6 +118,11 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/main/in/Guide",
+      "requirement": "mandatory",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/main/in/LeftStickPosition",
       "requirement": "mandatory",
       "type": "vector2"
