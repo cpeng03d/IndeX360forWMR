@@ -36,6 +36,9 @@
               },
               "south": {
                 "output": "/actions/main/in/select"
+              },
+              "east": {
+                "output": "/actions/main/in/guide"
               }
             }
             },
@@ -137,11 +140,6 @@
                   "output": "/actions/main/in/righttriggervalue"
                 }
               }
-            },
-            {
-              "path": "/user/hand/right/input/trackpad",
-              "mode": "none",
-              "inputs": {}
             },
             {
               "path": "/user/hand/right/input/thumbstick",
