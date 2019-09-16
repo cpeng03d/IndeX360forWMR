@@ -2,6 +2,7 @@
 #include "SteamIVRInput.h"
 #include <math.h>
 #include <filesystem>
+using namespace VRInputMemes;
 void SteamIVRInput::Init(const bool initializeSteamVR)
 {
 
@@ -14,7 +15,7 @@ void SteamIVRInput::Init(const bool initializeSteamVR)
 	if (initializeSteamVR)
 	{
 		auto initError = vr::VRInitError_None;
-		vr::VR_Init(&initError, vr::VRApplication_Scene);
+		vr::VR_Init(&initError, vr::VRApplication_Background);
 		if (initError != vr::VRInitError_None)
 		{
 			std::cout << "Error: steamvr init: " << initError << std::endl;
@@ -38,7 +39,6 @@ void SteamIVRInput::Init(const bool initializeSteamVR)
 			std::cout << "Error: getActionHandle: "<< kv.first<<" code: " << error << std::endl;
 		}
 	}
-	
 
 	// Get set handle
 	error = vr::VRInput()->GetActionSetHandle(k_actionSetMain,
@@ -52,16 +52,21 @@ void SteamIVRInput::Init(const bool initializeSteamVR)
 	m_activeActionSet.ulRestrictedToDevice = vr::k_ulInvalidInputValueHandle;
 	// When I didn't manually set priority zero it didn't work for me, for unknown reasons.
 	m_activeActionSet.nPriority = 0;
+
 }
 
-void SteamIVRInput::Loop(XUSB_REPORT& report)
+ControllerState SteamIVRInput::Loop()
 {
 	// Getting the correct sizeof is critical.
 	// Make sure to match digital/analog with the function you're calling.
 	auto error = vr::VRInput()->UpdateActionState(&m_activeActionSet, sizeof(m_activeActionSet), 1);
-
+	ControllerState state = {};
 	for (auto ahandle : m_actionHandleMap)
 	{
+		if (ahandle.first == k_actionstart)
+		{
+			int i = 0;
+		}
 		vr::EVRInputError error;
 		switch (ahandle.second.second)
 		{
@@ -72,7 +77,7 @@ void SteamIVRInput::Loop(XUSB_REPORT& report)
 				{
 					std::cerr << "Error getting analog action state. Error code: " << error << " culprit: " << ahandle.first << std::endl;
 				}
-				handleAnalogAction(analogstate, ahandle.first, report);
+				handleAnalogAction(analogstate, ahandle.first, state);
 				break;
 			case VRInputType::VRInputType_Digital:
 				vr::InputDigitalActionData_t digitalstate;
@@ -81,11 +86,12 @@ void SteamIVRInput::Loop(XUSB_REPORT& report)
 				{
 					std::cerr << "Error getting digital action state. Error code: " << error << " culprit: " << ahandle.first << std::endl;
 				}
-				handleDigitalAction(digitalstate, ahandle.first, report);
+				handleDigitalAction(digitalstate, ahandle.first, state);
 				break;
 		}
 	
 	}
+	return state;
 }
 
 void SteamIVRInput::rumbleController(int controller, float duration, float frequency, float amplitude)
@@ -98,41 +104,41 @@ void SteamIVRInput::rumbleController(int controller, float duration, float frequ
 
 }
 
-void SteamIVRInput::handleDigitalAction(vr::InputDigitalActionData_t& state, const char* key, XUSB_REPORT& report)
+void SteamIVRInput::handleDigitalAction(vr::InputDigitalActionData_t& state, const char* key, ControllerState& report)
 {
-	if (state.bActive)
+	if (state.bActive && state.bState)
 	{
 		if (key == k_actionbuttonA)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_A;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_A;
 		}
 		else if (key == k_actionbuttonB)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_B;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_B;
 		}
 		else if (key == k_actionbuttonX)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_X;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_X;
 		}
 		else if (key == k_actionbuttonY)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_Y;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_Y;
 		}
 		else if (key == k_actionleftDPADUp)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_DPAD_UP;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_DPAD_UP;
 		}
 		else if (key == k_actionleftDPADLeft)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_DPAD_LEFT;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_DPAD_LEFT;
 		}
 		else if (key == k_actionleftDPADDown)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_DPAD_DOWN;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_DPAD_DOWN;
 		}
 		else if (key == k_actionleftDPADRight)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_DPAD_RIGHT;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_DPAD_RIGHT;
 		}
 		else if (key == k_actionleftTriggerClick)
 		{
@@ -144,32 +150,32 @@ void SteamIVRInput::handleDigitalAction(vr::InputDigitalActionData_t& state, con
 		}
 		else if (key == k_actionleftBumper)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_LEFT_SHOULDER;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_LEFT_SHOULDER;
 		}
 		else if (key == k_actionrightBumper)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_RIGHT_SHOULDER;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_RIGHT_SHOULDER;
 		}
 		else if (key == k_actionleftStickClick)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_LEFT_THUMB;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_LEFT_THUMB;
 		}
 		else if (key == k_actionrightStickClick)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_RIGHT_THUMB;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_RIGHT_THUMB;
 		}
 		else if (key == k_actionselect)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_GUIDE;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_BACK;
 		}
 		else if (key == k_actionstart)
 		{
-			report.wButtons |= _XUSB_BUTTON::XUSB_GAMEPAD_START;
+			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_START;
 		}
 	}
 }
 
-void SteamIVRInput::handleAnalogAction(vr::InputAnalogActionData_t& state, const char* key, XUSB_REPORT& report)
+void SteamIVRInput::handleAnalogAction(vr::InputAnalogActionData_t& state, const char* key, ControllerState& report)
 {
 	if (state.bActive)
 	{
@@ -185,15 +191,15 @@ void SteamIVRInput::handleAnalogAction(vr::InputAnalogActionData_t& state, const
 		}
 		else if (key == k_actionleftStickPosition)
 		{
-			short valuex = std::round(state.x * std::pow(2,16));
-			short valuey = std::round(state.y * std::pow(2, 16));
+			short valuex = std::round(state.x * std::pow(2,15));
+			short valuey = std::round(state.y * std::pow(2, 15));
 			report.sThumbLX = valuex;
 			report.sThumbLY = valuey;
 		}
 		else if (key == k_actionrightStickPosition)
 		{
-			short valuex = std::round(state.x * std::pow(2, 16));
-			short valuey = std::round(state.y * std::pow(2, 16));
+			short valuex = std::round(state.x * std::pow(2, 15));
+			short valuey = std::round(state.y * std::pow(2, 15));
 			report.sThumbRX = valuex;
 			report.sThumbRY = valuey;
 		}

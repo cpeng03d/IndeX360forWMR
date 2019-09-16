@@ -406,6 +406,7 @@ void initialize_xbox() {
   vigem_target_add(client, target);
   XUSB_REPORT_INIT(&report);
   std::cout << " => added target Xbox 360 Controller" << std::endl;
+  // TODO VIBRATION vigem_target_x360_register_notification()
   std::cout << std::endl;
 }
 
@@ -775,7 +776,7 @@ int main() {
   signal(SIGINT, exit_handler);
   std::cout << "XJoy v0.2.0" << std::endl << std::endl;
 
-  //initialize_xbox();
+  initialize_xbox();
   //hid_init();
   SteamIVRInput inputhandler;
   inputhandler.Init(true);
@@ -790,6 +791,19 @@ int main() {
   /*
   left_thread = CreateThread(0, 0, left_joycon_thread, 0, 0, &left_thread_id);
   right_thread = CreateThread(0, 0, right_joycon_thread, 0, 0, &right_thread_id);*/
+  while (true)
+  {
+	  auto state = inputhandler.Loop();
+	  report.bLeftTrigger = state.bLeftTrigger;
+	  report.bRightTrigger = state.bRightTrigger;
+	  report.sThumbLX = state.sThumbLX;
+	  report.sThumbLY = state.sThumbLY;
+	  report.sThumbRX = state.sThumbRX;
+	  report.sThumbRY = state.sThumbRY;
+	  report.wButtons = state.wButtons;
+	  vigem_target_x360_update(client, target, report);
+	  Sleep(1);
+  }
   Sleep(500);
   std::cout << std::endl;
   getchar();

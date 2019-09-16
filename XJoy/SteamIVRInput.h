@@ -2,7 +2,6 @@
 #include <openvr.h>
 #include <iostream>
 #include <map>
-#include "ViGEmClient.h"
 
 
 // These two are set in action_manifest.json. They must match or you'll get errors/things that don't work with no errors.
@@ -39,10 +38,45 @@ enum VRInputType
 
 typedef std::pair<vr::VRActionHandle_t, VRInputType> ActionHandle;
 
+namespace VRInputMemes{
+enum ControllerButtons
+{
+	XUSB_GAMEPAD_DPAD_UP = 0x0001,
+	XUSB_GAMEPAD_DPAD_DOWN = 0x0002,
+	XUSB_GAMEPAD_DPAD_LEFT = 0x0004,
+	XUSB_GAMEPAD_DPAD_RIGHT = 0x0008,
+	XUSB_GAMEPAD_START = 0x0010,
+	XUSB_GAMEPAD_BACK = 0x0020,
+	XUSB_GAMEPAD_LEFT_THUMB = 0x0040,
+	XUSB_GAMEPAD_RIGHT_THUMB = 0x0080,
+	XUSB_GAMEPAD_LEFT_SHOULDER = 0x0100,
+	XUSB_GAMEPAD_RIGHT_SHOULDER = 0x0200,
+	XUSB_GAMEPAD_GUIDE = 0x0400,
+	XUSB_GAMEPAD_A = 0x1000,
+	XUSB_GAMEPAD_B = 0x2000,
+	XUSB_GAMEPAD_X = 0x4000,
+	XUSB_GAMEPAD_Y = 0x8000
+
+};
+
+//
+// Represents an XINPUT_GAMEPAD-compatible report structure.
+// 
+struct ControllerState
+{
+	short wButtons = 0;
+	unsigned char bLeftTrigger = 0;
+	unsigned char bRightTrigger =0;
+	short sThumbLX=0;
+	short sThumbLY=0;
+	short sThumbRX=0;
+	short sThumbRY=0;
+};
+}
 class SteamIVRInput {
 public:
 	void Init(const bool init);
-	void Loop(XUSB_REPORT &report);
+	VRInputMemes::ControllerState Loop();
 	void rumbleController(int controller, float duration, float frequency, float amplitude);
 
 private:
@@ -79,6 +113,6 @@ private:
 	vr::VRActiveActionSet_t m_activeActionSet = {};
 	vr::InputDigitalActionData_t m_nextSongData = {};
 
-	void handleDigitalAction(vr::InputDigitalActionData_t& state, const char* key, XUSB_REPORT &report);
-	void handleAnalogAction(vr::InputAnalogActionData_t& state, const char* key, XUSB_REPORT& report);
+	void handleDigitalAction(vr::InputDigitalActionData_t& state, const char* key, VRInputMemes::ControllerState&report);
+	void handleAnalogAction(vr::InputAnalogActionData_t& state, const char* key, VRInputMemes::ControllerState& report);
 };
