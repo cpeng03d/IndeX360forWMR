@@ -6,8 +6,7 @@ In practice any VR controller can be mapped onto the individual 360 buttons usin
 
 
 ## Note
-Start and Guide buttons don't work yet. Trying to map the system buttons onto them but they don't appear to activate any input actions.
-Not sure how to map the bumpers, so those are optional. Should still be able to map to them using the SteamVR input map thingy.
+Bumpers are hardcoded to the to middle fingers, since those kind of inputs aren't directly available through SteamVR's input binding interface.
 
 ## Installation
 
