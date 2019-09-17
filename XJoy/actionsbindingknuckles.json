@@ -2,177 +2,172 @@
    "action_manifest_version" : 0,
    "alias_info" : {},
    "bindings" : {
-      "/actions/main": {
-        "chords": [],
-        "haptics": [
-          {
-            "path": "/user/hand/left/output/haptic",
-            "output": "/actions/main/out/rumbleleft"
-          },
-          {
-            "path": "/user/hand/right/output/haptic",
-            "output": "/actions/main/out/rumbleright"
+    "/actions/main": {
+      "chords": [],
+      "haptics": [
+        {
+          "path": "/user/hand/left/output/haptic",
+          "output": "/actions/main/out/rumbleleft"
+        },
+        {
+          "path": "/user/hand/right/output/haptic",
+          "output": "/actions/main/out/rumbleright"
+        }
+      ],
+      "sources": [
+        {
+          "path": "/user/hand/left/input/system",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/select"
+            }
           }
-        ],
-        "sources": [
-          {
-            "path": "/user/hand/left/input/system",
-            "mode": "button",
-            "inputs": {
-              "click": {
-                "output": "/actions/main/in/select"
-              }
-            }
+        },
+        {
+          "path": "/user/hand/right/input/trackpad",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "click"
           },
-          {
-            "path": "/user/hand/right/input/trackpad",
-            "mode": "dpad",
-            "parameters": {
-              "sub_mode": "click"
+          "inputs": {
+            "north": {
+              "output": "/actions/main/in/start"
             },
-            "inputs": {
-              "north": {
-                "output": "/actions/main/in/start"
-              },
-              "south": {
-                "output": "/actions/main/in/select"
-              },
-              "east": {
-                "output": "/actions/main/in/guide"
-              }
+            "south": {
+              "output": "/actions/main/in/select"
+            },
+            "east": {
+              "output": "/actions/main/in/guide"
             }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/trigger",
+          "mode": "trigger",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/lefttriggerclick"
             },
-            {
-              "path": "/user/hand/left/input/trigger",
-              "mode": "trigger",
-              "inputs": {
-                "click": {
-                  "output": "/actions/main/in/lefttriggerclick"
-                },
-                "pull": {
-                  "output": "/actions/main/in/lefttriggervalue"
-                }
-              }
-            },
-            {
-              "path": "/user/hand/left/input/trackpad",
-              "mode": "dpad",
-              "parameters": {
-                "sub_mode": "click"
-              },
-              "inputs": {
-                "north": {
-                  "output": "/actions/main/in/leftdpadup"
-                },
-                "east": {
-                  "output": "/actions/main/in/leftdpadright"
-                },
-                "south": {
-                  "output": "/actions/main/in/leftdpaddown"
-                },
-                "west": {
-                  "output": "/actions/main/in/leftdpadleft"
-                }
-              }
-            },
-            {
-              "path": "/user/hand/left/input/thumbstick",
-              "mode": "joystick",
-              "inputs": {
-                "click": {
-                  "output": "/actions/main/in/leftstickclick"
-                },
-                "position": {
-                  "output": "/actions/main/in/leftstickposition"
-                }
-              }
-            },
-            {
-              "path": "/user/hand/left/input/b",
-              "mode": "button",
-              "inputs": {
-                "click": {
-                  "output": "/actions/main/in/buttony"
-                }
-              }
-            },
-            {
-              "path": "/user/hand/left/input/a",
-              "mode": "button",
-              "inputs": {
-                "click": {
-                  "output": "/actions/main/in/buttonx"
-                }
-              }
-            },
-            {
-              "path": "/user/hand/left/input/grip",
-              "mode": "none",
-              "inputs": {}
-            },
-            {
-              "path": "/user/hand/left/input/pinch",
-              "mode": "none",
-              "inputs": {}
-            },
-            {
-              "path": "/user/hand/left/input/skeleton/left",
-              "mode": "none",
-              "inputs": {}
-            },
-            {
-              "path": "/user/hand/right/input/system",
-              "mode": "button",
-              "inputs": {
-                "click": {
-                  "output": "/actions/main/in/start"
-                }
-              }
-            },
-            {
-              "path": "/user/hand/right/input/trigger",
-              "mode": "trigger",
-              "inputs": {
-                "click": {
-                  "output": "/actions/main/in/righttriggerclick"
-                },
-                "pull": {
-                  "output": "/actions/main/in/righttriggervalue"
-                }
-              }
-            },
-            {
-              "path": "/user/hand/right/input/thumbstick",
-              "mode": "joystick",
-              "inputs": {
-                "click": {
-                  "output": "/actions/main/in/rightstickclick"
-                },
-                "position": {
-                  "output": "/actions/main/in/rightstickposition"
-                }
-              }
-            },
-            {
-              "path": "/user/hand/right/input/b",
-              "mode": "button",
-              "inputs": {
-                "click": {
-                  "output": "/actions/main/in/buttonb"
-                }
-              }
-            },
-            {
-              "path": "/user/hand/right/input/a",
-              "mode": "button",
-              "inputs": {
-                "click": {
-                  "output": "/actions/main/in/buttona"
-                }
-              }
+            "pull": {
+              "output": "/actions/main/in/lefttriggervalue"
             }
-        ]
-      }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/trackpad",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "click"
+          },
+          "inputs": {
+            "north": {
+              "output": "/actions/main/in/leftdpadup"
+            },
+            "east": {
+              "output": "/actions/main/in/leftdpadright"
+            },
+            "south": {
+              "output": "/actions/main/in/leftdpaddown"
+            },
+            "west": {
+              "output": "/actions/main/in/leftdpadleft"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/thumbstick",
+          "mode": "joystick",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/leftstickclick"
+            },
+            "position": {
+              "output": "/actions/main/in/leftstickposition"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/b",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/buttony"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/a",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/buttonx"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/system",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/start"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trigger",
+          "mode": "trigger",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/righttriggerclick"
+            },
+            "pull": {
+              "output": "/actions/main/in/righttriggervalue"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/thumbstick",
+          "mode": "joystick",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/rightstickclick"
+            },
+            "position": {
+              "output": "/actions/main/in/rightstickposition"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/b",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/buttonb"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/a",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/buttona"
+            }
+          }
+        }
+      ],
+      "skeleton": [
+        {
+          "path": "/user/hand/left/input/skeleton/left",
+          "output": "/actions/main/in/leftskell"
+        },
+        {
+          "path": "/user/hand/right/input/skeleton/right",
+          "output": "/actions/main/in/rightskell"
+        }
+      ]
+    }
    },
    "category" : "steamvr_input",
    "controller_type" : "knuckles",

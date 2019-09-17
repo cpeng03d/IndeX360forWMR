@@ -29,12 +29,16 @@ constexpr auto k_actionstart = "/actions/main/in/Start";
 constexpr auto k_actionguide = "/actions/main/in/Guide";
 constexpr auto k_actionleftStickPosition = "/actions/main/in/LeftStickPosition";
 constexpr auto k_actionrightStickPosition = "/actions/main/in/RightStickPosition";
+constexpr auto k_actionleftSkelly = "/actions/main/in/leftSkell";
+constexpr auto k_actionrightSkelly = "/actions/main/in/rightSkell";
+
 
 enum VRInputType
 {
 	VRInputType_Digital = 0,
 	VRInputType_Analog = 1,
-	VRInputType_Output = 2
+	VRInputType_Output = 2,
+	VRInputType_Skelly = 3
 };
 
 typedef std::pair<vr::VRActionHandle_t, VRInputType> ActionHandle;
@@ -77,6 +81,7 @@ struct ControllerState
 class SteamIVRInput {
 public:
 	void Init(const bool init);
+	void Shutdown();
 	VRInputMemes::ControllerState Loop();
 	void rumbleController(int controller, float duration, float frequency, float amplitude);
 
@@ -109,7 +114,13 @@ private:
 		{k_actionguide, {{},VRInputType::VRInputType_Digital}},
 		{k_actionleftStickPosition, {{},VRInputType::VRInputType_Analog}},
 		{k_actionrightStickPosition, {{},VRInputType::VRInputType_Analog}},
+		{k_actionleftSkelly, {{},VRInputType::VRInputType_Skelly}},
+		{k_actionrightSkelly, {{},VRInputType::VRInputType_Skelly}}
 	};
+
+	bool leftMiddleFingerPressed = false;
+	bool rightMiddleFingerPressed = false;
+
 
 	vr::VRActionSetHandle_t m_mainSetHandler = {};
 	vr::VRActiveActionSet_t m_activeActionSet = {};
@@ -117,4 +128,5 @@ private:
 
 	void handleDigitalAction(vr::InputDigitalActionData_t& state, const char* key, VRInputMemes::ControllerState&report);
 	void handleAnalogAction(vr::InputAnalogActionData_t& state, const char* key, VRInputMemes::ControllerState& report);
+	void handleSkellyAction(vr::InputSkeletalActionData_t& state, const char* key, VRInputMemes::ControllerState& report);
 };

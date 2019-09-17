@@ -55,6 +55,11 @@ void SteamIVRInput::Init(const bool initializeSteamVR)
 
 }
 
+void SteamIVRInput::Shutdown()
+{
+	vr::VR_Shutdown();
+}
+
 ControllerState SteamIVRInput::Loop()
 {
 	// Getting the correct sizeof is critical.
@@ -75,7 +80,7 @@ ControllerState SteamIVRInput::Loop()
 				error = vr::VRInput()->GetAnalogActionData(ahandle.second.first, &analogstate, sizeof(analogstate), vr::k_ulInvalidInputValueHandle);
 				if (error != vr::EVRInputError::VRInputError_None)
 				{
-					std::cerr << "Error getting analog action state. Error code: " << error << " culprit: " << ahandle.first << std::endl;
+					std::cout << "Error getting analog action state. Error code: " << error << " culprit: " << ahandle.first << std::endl;
 				}
 				handleAnalogAction(analogstate, ahandle.first, state);
 				break;
@@ -84,9 +89,18 @@ ControllerState SteamIVRInput::Loop()
 				error = vr::VRInput()->GetDigitalActionData(ahandle.second.first, &digitalstate, sizeof(digitalstate), vr::k_ulInvalidInputValueHandle);
 				if (error != vr::EVRInputError::VRInputError_None)
 				{
-					std::cerr << "Error getting digital action state. Error code: " << error << " culprit: " << ahandle.first << std::endl;
+					std::cout << "Error getting digital action state. Error code: " << error << " culprit: " << ahandle.first << std::endl;
 				}
 				handleDigitalAction(digitalstate, ahandle.first, state);
+				break;
+			case VRInputType::VRInputType_Skelly:
+				vr::InputSkeletalActionData_t skellystate;
+				error = vr::VRInput()->GetSkeletalActionData(ahandle.second.first, &skellystate, sizeof(skellystate));
+				if (error != vr::EVRInputError::VRInputError_None)
+				{
+					std::cout << "Error getting digital action state. Error code: " << error << " culprit: " << ahandle.first << std::endl;
+				}
+				handleSkellyAction(skellystate, ahandle.first, state);
 				break;
 		}
 	
@@ -99,7 +113,7 @@ void SteamIVRInput::rumbleController(int controller, float duration, float frequ
 	auto error = vr::VRInput()->TriggerHapticVibrationAction(controller ? m_actionHandleMap[k_actionrumbleLeft].first : m_actionHandleMap[k_actionrumbleRight].first, 0, duration, frequency, amplitude, vr::k_ulInvalidInputValueHandle);
 	if (error != vr::EVRInputError::VRInputError_None)
 	{
-		std::cerr << "Rumble error. Code: " << error << std::endl;
+		std::cout << "Rumble error. Code: " << error << std::endl;
 	}
 
 }
@@ -111,9 +125,11 @@ void SteamIVRInput::handleDigitalAction(vr::InputDigitalActionData_t& state, con
 		if (key == k_actionbuttonA)
 		{
 			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_A;
+			//rumbleController(0, 0.001, 60, 0);
 		}
 		else if (key == k_actionbuttonB)
 		{
+			//rumbleController(0, 5, 60, 1);
 			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_B;
 		}
 		else if (key == k_actionbuttonX)
@@ -206,6 +222,41 @@ void SteamIVRInput::handleAnalogAction(vr::InputAnalogActionData_t& state, const
 			short valuey = std::round(state.y * std::pow(2, 15));
 			report.sThumbRX = valuex;
 			report.sThumbRY = valuey;
+		}
+	}
+}
+
+
+void SteamIVRInput::handleSkellyAction(vr::InputSkeletalActionData_t& state, const char* key, ControllerState& report)
+{
+	if (state.bActive)
+	{
+		vr::VRSkeletalSummaryData_t summData;
+		auto error = vr::VRInput()->GetSkeletalSummaryData(m_actionHandleMap[key].first, vr::EVRSummaryType::VRSummaryType_FromDevice, &summData);
+		if (error != vr::EVRInputError::VRInputError_None)
+		{
+			std::cout << "Error getting skeletal summaray. Error code: " << error << " culprit: " << key << std::endl;
+		}
+		auto middleFingerCurl = summData.flFingerCurl[vr::EVRFinger::VRFinger_Middle];
+		bool active = middleFingerCurl > 0.5;
+		if (key == k_actionleftSkelly)
+		{
+			if (!leftMiddleFingerPressed && active)
+			{
+				rumbleController(1, 0.05, 10, 0.5);
+			}
+			if((leftMiddleFingerPressed = active))
+				report.wButtons |= ControllerButtons::XUSB_GAMEPAD_LEFT_SHOULDER;
+		}
+		else if (key == k_actionrightSkelly)
+		{
+			if (!rightMiddleFingerPressed && active)
+			{
+				rumbleController(0, 0.05, 10, 0.5);
+			}
+			if((rightMiddleFingerPressed = active))
+				report.wButtons |= ControllerButtons::XUSB_GAMEPAD_RIGHT_SHOULDER;
+
 		}
 	}
 }

@@ -8,6 +8,16 @@
    //"binding_url": "legacy_actions.json"
   "actions": [
     {
+      "name": "/actions/main/in/leftSkell",
+      "skeleton": "/skeleton/hand/left",
+      "type": "skeleton"
+    },
+    {
+      "name": "/actions/main/in/rightSkell",
+      "skeleton": "/skeleton/hand/right",
+      "type": "skeleton"
+    },
+    {
       "name": "/actions/main/in/ButtonA",
       "requirement": "mandatory",
       "type": "boolean"
