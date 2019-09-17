@@ -87,8 +87,9 @@ public:
 
 private:
 	//Using an action manifest from a path that isn't the executable path doesn't work for whatever reason.
-	const std::string m_actionManifestPath =  "..\\Xjoy\\action_manifest.json"; //D:\\SourceTree\\IndeX360\\XJoy\\
+	//const std::string m_actionManifestPath =  "..\\Xjoy\\action_manifest.json"; //D:\\SourceTree\\IndeX360\\XJoy\\
 	
+	const std::string m_actionManifestPath =  "action_manifest.json"; 
 	std::map<const char*, ActionHandle> m_actionHandleMap =
 	{ 
 		{k_actionbuttonA, {{},VRInputType::VRInputType_Digital}},
