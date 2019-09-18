@@ -123,7 +123,7 @@ private:
 
 	bool leftMiddleFingerPressed = false;
 	bool rightMiddleFingerPressed = false;
-
+	bool programActive = true;
 
 	vr::VRActionSetHandle_t m_mainSetHandler = {};
 	vr::VRActiveActionSet_t m_activeActionSet = {};
