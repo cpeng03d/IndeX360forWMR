@@ -110,17 +110,19 @@ ControllerState SteamIVRInput::Loop()
 
 void SteamIVRInput::rumbleController(int controller, float duration, float frequency, float amplitude)
 {
-	auto error = vr::VRInput()->TriggerHapticVibrationAction(controller ? m_actionHandleMap[k_actionrumbleLeft].first : m_actionHandleMap[k_actionrumbleRight].first, 0, duration, frequency, amplitude, vr::k_ulInvalidInputValueHandle);
-	if (error != vr::EVRInputError::VRInputError_None)
+	if(programActive)
 	{
-		std::cout << "Rumble error. Code: " << error << std::endl;
+		auto error = vr::VRInput()->TriggerHapticVibrationAction(controller ? m_actionHandleMap[k_actionrumbleLeft].first : m_actionHandleMap[k_actionrumbleRight].first, 0, duration, frequency, amplitude, vr::k_ulInvalidInputValueHandle);
+		if (error != vr::EVRInputError::VRInputError_None)
+		{
+			std::cout << "Rumble error. Code: " << error << std::endl;
+		}
 	}
-
 }
 
 void SteamIVRInput::handleDigitalAction(vr::InputDigitalActionData_t& state, const char* key, ControllerState& report)
 {
-	if (state.bActive && state.bState)
+	if (state.bActive && state.bState && programActive)
 	{
 		if (key == k_actionbuttonA)
 		{
@@ -193,11 +195,15 @@ void SteamIVRInput::handleDigitalAction(vr::InputDigitalActionData_t& state, con
 			report.wButtons |= ControllerButtons::XUSB_GAMEPAD_GUIDE;
 		}
 	}
+	else if (state.bActive && key == k_actiontoggleActive)
+	{
+		programActive = state.bState;	
+	}
 }
 
 void SteamIVRInput::handleAnalogAction(vr::InputAnalogActionData_t& state, const char* key, ControllerState& report)
 {
-	if (state.bActive)
+	if (state.bActive && programActive)
 	{
 		if (key == k_actionleftTriggerValue)
 		{
@@ -229,7 +235,7 @@ void SteamIVRInput::handleAnalogAction(vr::InputAnalogActionData_t& state, const
 
 void SteamIVRInput::handleSkellyAction(vr::InputSkeletalActionData_t& state, const char* key, ControllerState& report)
 {
-	if (state.bActive)
+	if (state.bActive && programActive)
 	{
 		vr::VRSkeletalSummaryData_t summData;
 		auto error = vr::VRInput()->GetSkeletalSummaryData(m_actionHandleMap[key].first, vr::EVRSummaryType::VRSummaryType_FromDevice, &summData);
