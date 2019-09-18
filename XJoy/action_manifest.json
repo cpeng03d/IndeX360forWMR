@@ -17,6 +17,11 @@
       "skeleton": "/skeleton/hand/right",
       "type": "skeleton"
     },
+     {
+      "name": "/actions/main/in/ToggleActive",
+      "requirement": "optional",
+      "type": "boolean"
+    },
     {
       "name": "/actions/main/in/ButtonA",
       "requirement": "mandatory",
