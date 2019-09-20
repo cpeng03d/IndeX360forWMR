@@ -26,23 +26,23 @@ versions. The default mappings are shown below:
 
 | Joy-Con Button     | Xbox Button    |
 |--------------------|----------------|
-| A                  | B              |
-| B                  | A              |
-| X                  | Y              |
-| Y                  | X              |
+| Right B            | B              |
+| Right A            | A              |
+| Left B             | Y              |
+| Left A             | X              |
 | Left Trigger       | Left Trigger   |
 | Right Trigger      | Right Trigger  |
-| Left Shoulder      | Left Shoulder  |
-| Right Shoulder     | Right Shoulder |
-| D-PAD              | D-PAD          |
+| Left Middle Finger | Left Shoulder  |
+| Right Middle Finger| Right Shoulder |
+| Left Touchpad      | D-PAD          |
 | Left Analog        | Left Analog    |
 | Right Analog       | Right Analog   |
 | Left Stick         | Left Thumb     |
 | Right Stick        | Right Thumb    |
-| Home               | Start          |
-| Capture            | Back           |
-| Plus               | Start          |
-| Minus              | Back           |
+| Right Touchpad D   | Start          |
+| Right Touchpad U   | Back           |
+| Right Touchpad R   | Guide          |
+
 
 ## Building
 
