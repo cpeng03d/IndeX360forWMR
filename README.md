@@ -10,7 +10,7 @@ Bumpers are hardcoded to the to middle fingers, since those kind of inputs aren'
 
 ## Installation
 
-1. [Install the ViGEm Bus Driver](https://github.com/ViGEm/ViGEmBus/releases/tag/v1.16.112) (install all requirements as well)
+1. [Install the ViGEm Bus Driver](https://github.com/ViGEm/ViGEmBus/releases/tag/setup-v1.16.116) (install all requirements as well)
 
 ## Usage
 
