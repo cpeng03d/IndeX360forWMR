@@ -1,3 +1,27 @@
+A fork of indeX360 for WMR motion Controller to emulate Gamepad.
+Installation instrustions:
+Install the ViGEm Bus Driver latest version 1.21.442 as of Sep 2023.
+https://ds4-windows.com/download/vigembus-driver/
+
+After launching SteamVR, go to IndeX360-wmr\XJoy
+Then launch XJoy.exe
+Your controller should emulate gamepad now.
+I believe you need to have the game window focused to have it work.
+
+
+You can build this project for other controllers too, just change tha mapping at
+\IndeX360-wmr\XJoy\actionsbindingknuckles.json
+Then build the project with Visual Studio 2017/2019.
+For how to build the project see the original readme below.
+
+
+
+
+
+Below is the original readme
+---------------------------------------------------------------------------------------------------
+
+
 # IndeX360
 
 Uses your Valve Index Controllers as an xbox 360 gamepad. Forked from XJoy and ported over to use OpenVR's Input system.
