@@ -16,7 +16,7 @@
       ],
       "sources": [
         {
-          "path": "/user/hand/left/input/system",
+          "path": "/user/hand/left/input/application_menu",
           "mode": "button",
           "inputs": {
             "click": {
@@ -32,13 +32,16 @@
           },
           "inputs": {
             "north": {
-              "output": "/actions/main/in/start"
+              "output": "/actions/main/in/buttony"
             },
             "south": {
-              "output": "/actions/main/in/select"
+              "output": "/actions/main/in/buttona"
             },
             "east": {
-              "output": "/actions/main/in/guide"
+              "output": "/actions/main/in/buttonb"
+            },
+            "west": {
+              "output": "/actions/main/in/buttonx"
             }
           }
         },
@@ -106,7 +109,7 @@
           }
         },
         {
-          "path": "/user/hand/right/input/system",
+          "path": "/user/hand/right/input/application_menu",
           "mode": "button",
           "inputs": {
             "click": {
@@ -172,7 +175,7 @@
    "category" : "steamvr_input",
    "controller_type" : "knuckles",
    "description" : "",
-   "name" : "My XJoy.exe configuration for Index Controller",
+   "name" : "My XJoy.exe configuration for WMR Controller",
    "options" : {},
    "simulated_actions" : []
 }
