@@ -7,7 +7,7 @@ Install the ViGEm Bus Driver latest version 1.21.442 as of Sep 2023.
 https://ds4-windows.com/download/vigembus-driver/
 
 
-After launching SteamVR, go to IndeX360-wmr\XJoy
+After launching SteamVR, go to XJoy folder
 
 Then launch XJoy.exe
 
