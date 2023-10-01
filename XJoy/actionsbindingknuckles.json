@@ -24,27 +24,27 @@
             }
           }
         },
-        {
-          "path": "/user/hand/right/input/trackpad",
-          "mode": "dpad",
-          "parameters": {
-            "sub_mode": "click"
-          },
-          "inputs": {
-            "north": {
-              "output": "/actions/main/in/buttony"
-            },
-            "south": {
-              "output": "/actions/main/in/buttona"
-            },
-            "east": {
-              "output": "/actions/main/in/buttonb"
-            },
-            "west": {
-              "output": "/actions/main/in/buttonx"
-            }
-          }
-        },
+        // {
+        //   "path": "/user/hand/right/input/trackpad",
+        //   "mode": "dpad",
+        //   "parameters": {
+        //     "sub_mode": "click"
+        //   },
+        //   "inputs": {
+        //     "north": {
+        //       "output": "/actions/main/in/buttony"
+        //     },
+        //     "south": {
+        //       "output": "/actions/main/in/buttona"
+        //     },
+        //     "east": {
+        //       "output": "/actions/main/in/buttonb"
+        //     },
+        //     "west": {
+        //       "output": "/actions/main/in/buttonx"
+        //     }
+        //   }
+        // },
         {
           "path": "/user/hand/left/input/trigger",
           "mode": "trigger",
@@ -57,27 +57,27 @@
             }
           }
         },
-        {
-          "path": "/user/hand/left/input/trackpad",
-          "mode": "dpad",
-          "parameters": {
-            "sub_mode": "click"
-          },
-          "inputs": {
-            "north": {
-              "output": "/actions/main/in/leftdpadup"
-            },
-            "east": {
-              "output": "/actions/main/in/leftdpadright"
-            },
-            "south": {
-              "output": "/actions/main/in/leftdpaddown"
-            },
-            "west": {
-              "output": "/actions/main/in/leftdpadleft"
-            }
-          }
-        },
+        // {
+        //   "path": "/user/hand/left/input/trackpad",
+        //   "mode": "dpad",
+        //   "parameters": {
+        //     "sub_mode": "click"
+        //   },
+        //   "inputs": {
+        //     "north": {
+        //       "output": "/actions/main/in/leftdpadup"
+        //     },
+        //     "east": {
+        //       "output": "/actions/main/in/leftdpadright"
+        //     },
+        //     "south": {
+        //       "output": "/actions/main/in/leftdpaddown"
+        //     },
+        //     "west": {
+        //       "output": "/actions/main/in/leftdpadleft"
+        //     }
+        //   }
+        // },
         {
           "path": "/user/hand/left/input/thumbstick",
           "mode": "joystick",
@@ -90,24 +90,24 @@
             }
           }
         },
-        {
-          "path": "/user/hand/left/input/b",
-          "mode": "button",
-          "inputs": {
-            "click": {
-              "output": "/actions/main/in/buttony"
-            }
-          }
-        },
-        {
-          "path": "/user/hand/left/input/a",
-          "mode": "button",
-          "inputs": {
-            "click": {
-              "output": "/actions/main/in/buttonx"
-            }
-          }
-        },
+        // {
+        //   "path": "/user/hand/left/input/grip",
+        //   "mode": "button",
+        //   "inputs": {
+        //     "click": {
+        //       "output": "/actions/main/in/LeftBumper"
+        //     }
+        //   }
+        // },
+        // {
+        //   "path": "/user/hand/right/input/grip",
+        //   "mode": "button",
+        //   "inputs": {
+        //     "click": {
+        //       "output": "/actions/main/in/RightBumper"
+        //     }
+        //   }
+        // },
         {
           "path": "/user/hand/right/input/application_menu",
           "mode": "button",
@@ -158,15 +158,35 @@
               "output": "/actions/main/in/buttona"
             }
           }
+        },
+        {
+          "path": "/user/hand/left/input/x",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/buttonx"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/y",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/buttony"
+            }
+          }
         }
       ],
       "skeleton": [
         {
           "path": "/user/hand/left/input/skeleton/left",
+          // "path": "/user/hand/left/input/grip",
           "output": "/actions/main/in/leftskell"
         },
         {
           "path": "/user/hand/right/input/skeleton/right",
+          // "path": "/user/hand/right/input/grip",
           "output": "/actions/main/in/rightskell"
         }
       ]

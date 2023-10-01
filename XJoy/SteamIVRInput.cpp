@@ -244,7 +244,9 @@ void SteamIVRInput::handleSkellyAction(vr::InputSkeletalActionData_t& state, con
 			std::cout << "Error getting skeletal summaray. Error code: " << error << " culprit: " << key << std::endl;
 		}
 		auto middleFingerCurl = summData.flFingerCurl[vr::EVRFinger::VRFinger_Middle];
-		bool active = middleFingerCurl > 0.5;
+		auto indexFingerCurl = summData.flFingerCurl[vr::EVRFinger::VRFinger_Index];
+		// bool active = middleFingerCurl > 0.5;
+		bool active = (middleFingerCurl - indexFingerCurl) > 0.5;
 		if (key == k_actionleftSkelly)
 		{
 			if (!leftMiddleFingerPressed && active)
